@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  nats:
+    image: nats:alpine
+    ports:
+      - 4222:4222
+
+  publisher:
+    build: publisher
+    command: ./wait-for nats:4222 -- npm start
+
+  subscriber:
+    build: subscriber
+    command: ./wait-for nats:4222 -- npm start
+    environment:
+      SUBSCRIBER_NAME: A
