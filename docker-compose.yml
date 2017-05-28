@@ -8,7 +8,7 @@ services:
 
   publisher:
     build: publisher
-    command: ./wait-for nats:4222 -- npm start
+    command: ./wait-for nats:4222 -- npm run dev
     ports:
       - 9000:9000
     volumes:
@@ -16,6 +16,6 @@ services:
 
   subscriber:
     build: subscriber
-    command: ./wait-for nats:4222 -- npm start
+    command: ./wait-for nats:4222 -- npm run dev
     volumes:
       - ./subscriber/src:/usr/src/app/src

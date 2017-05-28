@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "./node_modules/.bin/nodemon src/index.js"
+    "dev": "./node_modules/.bin/nodemon src/index.js",
+    "start": "node src/index.js"
   },
   "dependencies": {
     "koa": "^2.2.0",
