@@ -1,5 +1,5 @@
 def compose = "docker-compose"
-def environment = "nats-example"
+def environment = "natsexample"
 
 pipeline {
   agent { 
@@ -31,7 +31,7 @@ pipeline {
 
     stage('Deploy') {
       steps {
-        deployToRancher(environment)
+        deployToRancher()
       }
     }
 
@@ -61,8 +61,8 @@ def pushToDockerhub(version) {
   sh "docker push mrako/nats-example_subscriber:${version}"
 }
 
-def deployToRancher(environment) {
-  upgradeEnvironment(environment, 'swarm')
+def deployToRancher() {
+  upgradeEnvironment('nats-example', 'swarm')
 }
 
 def upgradeEnvironment(environment, version) {
