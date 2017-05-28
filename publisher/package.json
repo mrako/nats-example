@@ -1,8 +1,12 @@
 {
   "scripts": {
-    "start": "node index.js"
+    "start": "./node_modules/.bin/nodemon src/index.js"
   },
   "dependencies": {
+    "koa": "^2.2.0",
     "nats": "^0.7.20"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
   }
 }
