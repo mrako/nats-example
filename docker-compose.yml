@@ -6,6 +6,15 @@ services:
     ports:
       - 4222:4222
 
+  frontend:
+    build: frontend
+    environment:
+      - ENDPOINT=${ENDPOINT}
+    volumes:
+      - ./frontend/src:/usr/src/app/src
+    ports:
+      - 8000:8000
+
   publisher:
     build: publisher
     command: ./wait-for nats:4222 -- npm run dev

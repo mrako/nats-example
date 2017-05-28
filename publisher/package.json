@@ -4,8 +4,10 @@
     "start": "node src/index.js"
   },
   "dependencies": {
+    "kcors": "^1.3.2",
     "koa": "^2.2.0",
-    "nats": "^0.7.20"
+    "nats": "^0.7.20",
+    "socket.io": "^2.0.1"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"
