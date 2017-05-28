@@ -12,7 +12,7 @@ frontend:
 
 publisher:
   image: mrako/nats-example-publisher
-  command: ./wait-for nats:4222 -- npm start
+  command: ./wait-for nats:4222 -- node src/index.js
   labels:
     io.rancher.scheduler.affinity:host_label: type=database
   ports:
@@ -22,6 +22,6 @@ publisher:
 
 subscriber:
   image: mrako/nats-example-subscriber
-  command: ./wait-for nats:4222 -- npm start
+  command: ./wait-for nats:4222 -- node src/index.js
   links:
     - nats
