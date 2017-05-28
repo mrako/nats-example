@@ -67,7 +67,7 @@ def deployToRancher() {
 
 def upgradeEnvironment(environment, version) {
   def rancher = ". /home/jenkins/.env && ~/bin/rancher-compose -f docker-compose.${version}.yml -p ${environment} up -d"
-  def services = "backend frontend"
+  def services = "frontend publisher subscriber"
 
   sh "${rancher} --confirm-upgrade ${services}"
   sh "${rancher} --force-upgrade --pull ${services}"
