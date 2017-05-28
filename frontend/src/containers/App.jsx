@@ -2,11 +2,15 @@ import React, { Component } from 'react';
 
 import io from 'socket.io-client';
 
+const renderHost = (host) => (
+  <div key={host} className="flex-item">{host}</div>
+);
+
 class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {online: []};
+    this.state = { online: [] };
 
     this.checkOnline = this.checkOnline.bind(this);
   }
@@ -16,7 +20,6 @@ class App extends Component {
     this.socket = io('http://0.0.0.0:9000');
 
     this.socket.on('online', (hosts) => {
-      console.log(hosts);
       that.setState({ online: hosts });
     });
 
@@ -30,12 +33,16 @@ class App extends Component {
   render() {
     const { online } = this.state;
 
+    const Hosts = online.sort().map(renderHost);
+
     return (
       <div>
         <button onClick={this.checkOnline}>Check who are online</button>
-
-        <h3>Currently online:</h3>
-        { online.map((host) => <li key={host}>{host}</li>) }
+        <div className="flex-container">
+        <div className="flex-list">
+          { Hosts }
+        </div>
+        </div>
       </div>
     );
   }

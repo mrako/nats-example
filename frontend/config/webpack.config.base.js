@@ -9,7 +9,7 @@ module.exports = {
     publicPath: '/',
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.json'],
+    extensions: ['.js', '.jsx', '.json', '.css'],
     modules: [
       path.join(__dirname, '../src'),
       'node_modules',
@@ -39,10 +39,6 @@ module.exports = {
       {
         test: /\.json$/,
         loader: 'json-loader',
-      },
-      {
-        test: /\.(woff|woff2|ttf|eot|svg|png)(\?v=[a-z0-9]\.[a-z0-9]\.[a-z0-9])?$/,
-        loader: 'url-loader?limit=100000',
       },
     ],
   },

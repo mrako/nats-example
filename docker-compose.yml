@@ -17,7 +17,7 @@ services:
 
   publisher:
     build: publisher
-    command: ./wait-for nats:4222 -- npm run dev
+    command: ./wait-for nats:4222 -- node src/index.js
     ports:
       - 9000:9000
     volumes:
@@ -25,6 +25,6 @@ services:
 
   subscriber:
     build: subscriber
-    command: ./wait-for nats:4222 -- npm run dev
+    command: ./wait-for nats:4222 -- node src/index.js
     volumes:
       - ./subscriber/src:/usr/src/app/src

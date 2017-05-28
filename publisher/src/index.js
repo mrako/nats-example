@@ -34,14 +34,18 @@ io.on('connection', (socket) => {
   });
 
   socket.on('whoisonline', (request) => {
-    console.log('received ping from client');
-    socket.emit('online', hostsOnline);
-    /*
-    var sid = nats.request('ping', (response) => {
-      console.log(`Got response: ${response}`);
-      socket.emit('ping', response);
+    console.log('received whoisonline from webapp');
+    hostsOnline = [];
+
+    var sid = nats.request('whoisonline', (host) => {
+      console.log(`host ${host} replied to be online`);
+
+      if (!hostsOnline.includes(host)) {
+        hostsOnline.push(host);
+      }
+
+      socket.emit('online', hostsOnline);
     });
-    */
   });
 });
 
@@ -49,7 +53,15 @@ nats.subscribe('online', (host) => {
   console.log(`host online: ${host}`);
   if (!hostsOnline.includes(host)) {
     hostsOnline.push(host);
-    console.log(hostsOnline);
+  }
+  io.sockets.emit('online', hostsOnline);
+});
+
+nats.subscribe('offline', (host) => {
+  console.log(`host offline: ${host}`);
+  let index = hostsOnline.indexOf(host);
+  if (index >= 0) {
+    hostsOnline.splice(index, 1);
   }
   io.sockets.emit('online', hostsOnline);
 });
