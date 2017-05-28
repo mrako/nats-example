@@ -4,16 +4,16 @@ nats:
     - 4222:4222
 
 frontend:
-  image: mrako/nats-example-frontend
+  image: mrako/nats-example_frontend
   environment:
-    - ENDPOINT=http://88.99.227.207:9001
+    - ENDPOINT=http://88.99.227.207:9000
   labels:
     io.rancher.scheduler.affinity:host_label: type=lb
   ports:
     - 9001:8000
 
 publisher:
-  image: mrako/nats-example-publisher
+  image: mrako/nats-example_publisher
   command: ./wait-for nats:4222 -- node src/index.js
   labels:
     io.rancher.scheduler.affinity:host_label: type=lb
@@ -23,7 +23,7 @@ publisher:
     - nats
 
 subscriber:
-  image: mrako/nats-example-subscriber
+  image: mrako/nats-example_subscriber
   command: ./wait-for nats:4222 -- node src/index.js
   links:
     - nats
