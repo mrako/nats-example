@@ -3,11 +3,20 @@ nats:
   ports:
     - 4222:4222
 
+frontend:
+  image: mrako/nats-example-frontend
+  environment:
+    - ENDPOINT=http://88.99.227.207:9001
+  ports:
+    - 9000:8000
+
 publisher:
   image: mrako/nats-example-publisher
   command: ./wait-for nats:4222 -- npm start
+  labels:
+    io.rancher.scheduler.affinity:host_label: type=database
   ports:
-    - 9000:9000
+    - 9001:9000
   links:
     - nats
 

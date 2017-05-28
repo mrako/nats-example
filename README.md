@@ -15,5 +15,6 @@ Once started, the app is running at [http://localhost:8000](http://localhost:800
 
 ## Tag and Push
 
+    docker tag natsexample_frontend mrako/nats-example-frontend && docker push mrako/nats-example-frontend
     docker tag natsexample_publisher mrako/nats-example-publisher && docker push mrako/nats-example-publisher
     docker tag natsexample_subscriber mrako/nats-example-subscriber && docker push mrako/nats-example-subscriber
