@@ -25,13 +25,13 @@ pipeline {
 
     stage('Label and Push') {
       steps {
-        labelAndPush()
+        labelAndPush(environment)
       }
     }
 
     stage('Deploy') {
       steps {
-        deployToRancher()
+        deployToRancher(environment)
       }
     }
 
@@ -44,7 +44,7 @@ pipeline {
   }
 }
 
-def labelAndPush() {
+def labelAndPush(environment) {
   tagImages(environment, 'latest')
   pushToDockerhub('latest')
 }
@@ -61,7 +61,7 @@ def pushToDockerhub(version) {
   sh "docker push mrako/nats-example_subscriber:${version}"
 }
 
-def deployToRancher() {
+def deployToRancher(environment) {
   upgradeEnvironment(environment, 'swarm')
 }
 
