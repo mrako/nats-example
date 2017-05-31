@@ -5,10 +5,16 @@
   },
   "dependencies": {
     "koa": "^2.2.0",
-    "nats": "^0.7.20",
-    "node-cleanup": "^2.1.2"
+    "nats": "^0.7.20"
   },
   "devDependencies": {
+    "babel-eslint": "^7.2.2",
+    "eslint": "^3.19.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-node": "^4.2.2",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
     "nodemon": "^1.11.0"
   }
 }

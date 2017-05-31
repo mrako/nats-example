@@ -9,20 +9,16 @@ body > section, body > section > div {
 
 .flex-container {
   height: 100%;
-  
   display: flex;
   align-items: center;
-
   justify-content: space-around;
 }
 
 .flex-list {
   width: 960px;
-
   padding: 0;
   margin: 0;
   list-style: none;
-  
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -35,7 +31,6 @@ body > section, body > section > div {
   width: 350px;
   height: 100px;
   margin: 10px;
-  
   line-height: 100px;
   color: white;
   font-weight: bold;

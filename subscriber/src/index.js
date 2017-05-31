@@ -1,8 +1,6 @@
 const Koa = require('koa');
 const NATS = require('nats');
 
-var nodeCleanup = require('node-cleanup');
-
 const port = process.env.PORT || 9000;
 const hostname = process.env.HOSTNAME;
 

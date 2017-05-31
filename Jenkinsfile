@@ -34,7 +34,6 @@ pipeline {
         deployToRancher()
       }
     }
-
   }
 
   post {
