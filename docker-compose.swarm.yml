@@ -6,7 +6,7 @@ nats:
 frontend:
   image: mrako/nats-example_frontend
   environment:
-    - ENDPOINT=http://88.99.227.207:9000
+    - ENDPOINT=${ENDPOINT}
   labels:
     io.rancher.scheduler.affinity:host_label: type=lb
   ports:

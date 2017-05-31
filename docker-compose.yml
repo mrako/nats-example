@@ -8,8 +8,6 @@ services:
 
   frontend:
     build: frontend
-    environment:
-      - ENDPOINT=${ENDPOINT}
     volumes:
       - ./frontend/src:/usr/src/app/src
     ports:

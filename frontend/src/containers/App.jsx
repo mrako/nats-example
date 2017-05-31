@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 
 import io from 'socket.io-client';
 
-const renderHost = (host) => (
+const ENDPOINT = process.env.ENDPOINT;
+
+const renderHost = host => (
   <div key={host} className="flex-item">{host}</div>
 );
 
@@ -16,8 +18,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-    var that = this;
-    this.socket = io('http://0.0.0.0:9000');
+    const that = this;
+    this.socket = io(ENDPOINT);
 
     this.socket.on('online', (hosts) => {
       that.setState({ online: hosts });
@@ -39,13 +41,13 @@ class App extends Component {
       <div>
         <button onClick={this.checkOnline}>Check who are online</button>
         <div className="flex-container">
-        <div className="flex-list">
-          { Hosts }
-        </div>
+          <div className="flex-list">
+            { Hosts }
+          </div>
         </div>
       </div>
     );
   }
-};
+}
 
 export default App;
