@@ -4,6 +4,7 @@
     "start": "node src/index.js"
   },
   "dependencies": {
+    "debug": "^2.3.2",
     "koa": "^2.2.0",
     "nats": "^0.7.20"
   },
