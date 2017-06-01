@@ -8,6 +8,8 @@ services:
 
   frontend:
     build: frontend
+    environment:
+      - ENDPOINT=http://localhost:9000
     volumes:
       - ./frontend/src:/usr/src/app/src
     ports:
