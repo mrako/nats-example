@@ -5,7 +5,7 @@ const path = require('path');
 const config = require('./webpack.config.base');
 
 const GLOBALS = {
-  'process.env.ENDPOINT': JSON.stringify(process.env.ENDPOINT || 'http://0.0.0.0'),
+  'process.env.ENDPOINT': JSON.stringify(process.env.ENDPOINT || 'http://0.0.0.0:9000'),
 };
 
 module.exports = merge(config, {
