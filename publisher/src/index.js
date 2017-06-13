@@ -18,7 +18,7 @@ app.use(cors({ credentials: true }));
 const server = http.createServer(app.callback());
 const io = require('socket.io')(server);
 
-io.on('connection', (socket) => {  
+io.on('connection', (socket) => {
   debug('a user connected');
 
   socket.on('disconnect', () => {
@@ -29,7 +29,7 @@ io.on('connection', (socket) => {
     debug('received whoisonline from webapp');
     hostsOnline = [];
 
-    var sid = nats.request('whoisonline', (host) => {
+    nats.request('whoisonline', (host) => {
       debug(`host ${host} replied to be online`);
 
       if (!hostsOnline.includes(host)) {

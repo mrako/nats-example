@@ -9,7 +9,7 @@ const hostname = process.env.HOSTNAME;
 const app = new Koa();
 const nats = NATS.connect('nats://nats:4222');
 
-nats.subscribe('whoisonline', function(request, replyTo) {
+nats.subscribe('whoisonline', (request, replyTo) => {
   debug(`subscriber received whoisonline`);
   nats.publish(replyTo, hostname);
 });
@@ -25,7 +25,7 @@ const unsubscribe = (nats) => {
     nats.close();
     process.exit(1);
   });
-}
+};
 
 process.on('SIGTERM', () => unsubscribe(nats));
 
