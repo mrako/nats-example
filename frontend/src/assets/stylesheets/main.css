@@ -25,9 +25,8 @@ body > section, body > section > div {
   flex-direction: row;
 }
 
-
 .flex-item {
-  background: yellow;
+  background: dodgerblue;
   padding: 30px;
   width: 350px;
   height: 100px;
