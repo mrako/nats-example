@@ -19,7 +19,7 @@ pipeline {
 
     stage('Build') {
       steps {
-        sh "${compose} -p ${environment} build"
+        sh "${compose} -p ${environment} build --pull"
       }
     }
 
