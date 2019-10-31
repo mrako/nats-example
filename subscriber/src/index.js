@@ -1,7 +1,7 @@
 const Koa = require('koa');
 const NATS = require('nats');
 
-var debug = require('debug')('subscriber');
+const debug = require('debug')('subscriber');
 
 const port = process.env.PORT || 9000;
 const hostname = process.env.HOSTNAME;
