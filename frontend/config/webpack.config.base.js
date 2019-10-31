@@ -1,44 +1,72 @@
 const path = require('path');
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
   output: {
-    filename: 'main.js',
+    filename: '[name].[hash:8].js',
     path: path.resolve(__dirname, '../build'),
     publicPath: '/',
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.json', '.css'],
+    extensions: ['.js', '.jsx'],
     modules: [
       path.join(__dirname, '../src'),
       'node_modules',
     ],
+  },
+  optimization: {
+    minimizer: [
+      new OptimizeCSSAssetsPlugin({}),
+    ],
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /node_modules/,
+          name: 'vendor',
+          chunks: 'initial',
+          enforce: true,
+        },
+      },
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: 'src/public/index.html',
       filename: 'index.html',
     }),
-    new ExtractTextPlugin('main.css'),
+    new MiniCssExtractPlugin({
+      filename: '[name].[hash:8].css',
+    }),
   ],
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.(js|jsx)$/,
         include: path.resolve(__dirname, '../src'),
         loader: 'babel-loader',
         query: {
-          presets: ['react', 'es2015', 'stage-2'],
+          presets: [
+            '@babel/preset-react',
+            ['@babel/env', { targets: { browsers: ['last 2 versions'] }, modules: false }],
+          ],
+          plugins: [
+            '@babel/plugin-proposal-class-properties',
+          ],
         },
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' }),
+        use: [
+          { loader: MiniCssExtractPlugin.loader },
+          { loader: 'css-loader' },
+        ],
       },
       {
-        test: /\.json$/,
-        loader: 'json-loader',
+        test: /\.(woff|woff2|ttf|eot|svg|png|jpg)(\?v=[a-z0-9]\.[a-z0-9]\.[a-z0-9])?$/,
+        loader: 'url-loader?limit=100000',
       },
     ],
   },
