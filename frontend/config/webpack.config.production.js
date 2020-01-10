@@ -5,7 +5,6 @@ const webpack = require('webpack');
 const MinifyPlugin = require('babel-minify-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 const config = require('./webpack.config.base');
 
@@ -27,14 +26,4 @@ module.exports = merge(config, {
     new webpack.DefinePlugin(GLOBALS),
     new webpack.LoaderOptionsPlugin({ minimize: true }),
   ],
-  optimization: {
-    minimizer: [
-      new UglifyJSPlugin({
-        chunkFilter: (chunk) => (chunk.name !== 'vendor'),
-        uglifyOptions: {
-          compress: { drop_console: true },
-        },
-      }),
-    ],
-  },
 });
