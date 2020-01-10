@@ -4,7 +4,7 @@ const cors = require('kcors');
 
 const NATS = require('nats');
 
-var debug = require('debug')('publisher');
+const debug = require('debug')('publisher');
 
 const port = process.env.PORT || 9000;
 

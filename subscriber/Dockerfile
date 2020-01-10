@@ -1,11 +1,10 @@
 FROM node:alpine
 
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+WORKDIR /app
 
-COPY package*.json /usr/src/app/
-RUN npm install
+COPY package*.json /app/
+RUN npm ci
 
-COPY . /usr/src/app
+COPY . /app
 
 CMD [ "npm", "start" ]
