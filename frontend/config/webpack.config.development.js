@@ -1,19 +1,18 @@
-const merge = require('webpack-merge');
 const webpack = require('webpack');
 const path = require('path');
+
+const { merge } = require('webpack-merge');
 
 const config = require('./webpack.config.base');
 
 const GLOBALS = {
-  'process.env.ENDPOINT': JSON.stringify(process.env.ENDPOINT || 'http://0.0.0.0:9000/api'),
+  'process.env.ENDPOINT': JSON.stringify(process.env.ENDPOINT || 'http://0.0.0.0:9000'),
 };
 
 module.exports = merge(config, {
   mode: 'development',
-  cache: true,
-  devtool: 'cheap-module-eval-source-map',
   entry: {
-    main: ['@babel/polyfill', path.join(__dirname, '../src/client.jsx')],
+    main: ['@babel/polyfill', path.join(__dirname, '../src/index.jsx')],
   },
   devServer: {
     contentBase: path.join(__dirname, '../src/public'),

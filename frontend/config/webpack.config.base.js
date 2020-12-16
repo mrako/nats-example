@@ -11,7 +11,7 @@ module.exports = {
     publicPath: '/',
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.json', '.less'],
     modules: [
       path.join(__dirname, '../src'),
       'node_modules',
@@ -44,29 +44,17 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.jsx$/,
         include: path.resolve(__dirname, '../src'),
         loader: 'babel-loader',
-        query: {
-          presets: [
-            '@babel/preset-react',
-            ['@babel/env', { targets: { browsers: ['last 2 versions'] }, modules: false }],
-          ],
-          plugins: [
-            '@babel/plugin-proposal-class-properties',
-          ],
-        },
       },
       {
-        test: /\.css$/,
+        test: /\.less$/,
         use: [
           { loader: MiniCssExtractPlugin.loader },
           { loader: 'css-loader' },
+          { loader: 'less-loader' },
         ],
-      },
-      {
-        test: /\.(woff|woff2|ttf|eot|svg|png|jpg)(\?v=[a-z0-9]\.[a-z0-9]\.[a-z0-9])?$/,
-        loader: 'url-loader?limit=100000',
       },
     ],
   },
